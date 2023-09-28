@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappoh    = 30;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -17,10 +17,12 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+static const char col_mintCream[]   = "#f5fffa";
+static const char col_lightCoral[]  = "#f08080";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_mintCream },
+	[SchemeSel]  = { col_gray4, col_cyan,  col_lightCoral },
 };
 
 /* tagging */
@@ -79,7 +81,8 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *code[] = {"code", "NULL" };
+static const char *code[] = {"code", NULL };
+static const char *codeDWM[] = {"code ~/.suckless/dwm", NULL};
 static const char *edge[] = {"microsoft-edge-dev"};
 
 static const Key keys[] = {
@@ -88,6 +91,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	/* Custom Added */
 	{ MODKEY,			XK_a,	   spawn,	   {.v = code } },
+	{ MODKEY|ShiftMask,  XK_a,     spawn,      {.v = codeDWM }},
 	{ MODKEY,			XK_s,	   spawn,	   {.v = edge } },
 	/* End Custom Added*/
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
